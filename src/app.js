@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 const PORT = 8080;
 
-const productsRouter = require('./routes/products.router');
-const cartsRouter = require('./routes/carts.router');
+import productsRouter from './routes/products.router.js';
+import cartsRouter from './routes/carts.router.js';
 
 app.use(express.json());
 app.use('/api/products', productsRouter);
