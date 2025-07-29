@@ -44,6 +44,37 @@ class CartManager {
         await fs.writeFile(this.path, JSON.stringify(carts, null, 2));
         return cart;
     }
+
+    async updateCart(id, updates) {
+        const carts = await this.getCarts();
+        const index = carts.findIndex(c => c.id == id);
+        if (index === -1) return null;
+        delete updates.id; // evitar modificar el ID
+        carts[index] = { ...carts[index], ...updates };
+        await fs.writeFile(this.path, JSON.stringify(carts, null, 2));
+        return carts[index];
+    }
+
+    async deleteCart(id) {
+        const carts = await this.getCarts();
+        const filtered = carts.filter(c => c.id != id);
+        if (filtered.length === carts.length) return null; // no se encontró el carrito
+        await fs.writeFile(this.path, JSON.stringify(filtered, null, 2));
+        return true;
+    }
+
+    async removeProductFromCart(cid, pid) {
+        const carts = await this.getCarts();
+        const cart = carts.find(c => c.id == cid);
+        if (!cart) return null;
+
+        const productIndex = cart.products.findIndex(p => p.product === pid);
+        if (productIndex === -1) return null;
+
+        cart.products.splice(productIndex, 1);
+        await fs.writeFile(this.path, JSON.stringify(carts, null, 2));
+        return cart;
+    }
 }
 
 export default CartManager;
