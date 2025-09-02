@@ -1,13 +1,12 @@
-// src/public/js/realtime.js
 const socket = io();
 
-// Función para "escapar" texto antes de inyectar en el DOM
+// Escapar texto
 function escapeHtml(str) {
   if (!str) return '';
   return str.replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
 }
 
-// Renderizar lista de productos
+// Renderizar productos
 function renderProducts(products) {
   const lista = document.getElementById('listaProductos');
   if (!lista) return;
@@ -23,31 +22,42 @@ function renderProducts(products) {
   });
 }
 
-// Escuchar evento 'productos' desde el servidor
+// Escuchar productos desde servidor
 socket.on('productos', (productos) => {
   renderProducts(productos);
 });
 
-// Manejar formulario para crear producto (envía por socket)
+// Mostrar errores del servidor
+socket.on('error', (msg) => {
+  alert(msg);
+});
+
+// Agregar producto desde formulario
 const form = document.getElementById('formProducto');
 if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const formData = new FormData(form);
-    const product = {
-      title: formData.get('title'),
-      price: Number(formData.get('price')),
-      description: formData.get('description') || ''
-    };
+
+    const title = form.title.value.trim();
+    const price = Number(form.price.value);
+    const description = form.description.value.trim();
+
+    if (!title || isNaN(price) || price <= 0) {
+      alert('Debe ingresar un título y un precio válido.');
+      return;
+    }
+
+    const product = { title, price, description };
     socket.emit('nuevoProducto', product);
     form.reset();
   });
 }
 
-// Delegación para botones "Eliminar"
+// Eliminar producto con delegación
 document.addEventListener('click', (e) => {
   if (e.target && e.target.matches('.btn-delete')) {
     const id = e.target.dataset.id;
+    if (!id) return;
     socket.emit('eliminarProducto', id);
   }
 });
