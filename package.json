@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js",
+    "import-products": "node src/scripts/importProducts.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,8 @@
   "dependencies": {
     "express": "^5.1.0",
     "express-handlebars": "^8.0.1",
+    "mongoose": "^8.18.2",
+    "mongoose-paginate-v2": "^1.9.1",
     "socket.io": "^4.8.1",
     "uuid": "^11.1.0"
   },

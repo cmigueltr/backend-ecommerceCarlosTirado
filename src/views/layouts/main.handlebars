@@ -4,8 +4,27 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>E-commerce</title>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-  {{{body}}}
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/views" class="nav-logo">Mi Tienda</a>
+      <div class="nav-menu">
+        <a href="/views" class="nav-link">Inicio</a>
+        <a href="/views/products" class="nav-link">Productos</a>
+        <a href="/views/cart" class="nav-link">Carrito</a>
+        <a href="/api/products" class="nav-link">API</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    {{{body}}}
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 Mi E-commerce. Todos los derechos reservados.</p>
+  </footer>
 </body>
 </html>

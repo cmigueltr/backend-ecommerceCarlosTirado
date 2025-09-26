@@ -1,8 +1,24 @@
-<h1>Home — Productos</h1>
-<ul>
-  {{#each products}}
-    <li>{{this.title}} — ${{this.price}}</li>
-  {{/each}}
-</ul>
+<div class="container">
+  <h1>Bienvenido a nuestro E-commerce</h1>
+  
+  <div class="hero">
+    <h2>Descubre nuestros productos</h2>
+    <p>Encuentra todo lo que necesitas en nuestra tienda online</p>
+    <a href="/views/products" class="btn btn-primary">Ver Productos</a>
+  </div>
 
-<p><a href="/realtimeproducts">Ver productos en tiempo real</a></p>
+  <div class="features">
+    <div class="feature">
+      <h3>🚚 Envío Gratis</h3>
+      <p>En compras superiores a $50</p>
+    </div>
+    <div class="feature">
+      <h3>💳 Pago Seguro</h3>
+      <p>Múltiples métodos de pago</p>
+    </div>
+    <div class="feature">
+      <h3>🔄 Devoluciones</h3>
+      <p>30 días para devoluciones</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,202 @@
+[
+  {
+    "title": "iPhone 15 Pro",
+    "description": "El iPhone más avanzado con chip A17 Pro, cámara de 48MP y pantalla Super Retina XDR de 6.1 pulgadas",
+    "price": 999,
+    "category": "Electrónicos",
+    "stock": 25,
+    "available": true
+  },
+  {
+    "title": "Samsung Galaxy S24 Ultra",
+    "description": "Smartphone premium con S Pen, cámara de 200MP y pantalla Dynamic AMOLED 2X de 6.8 pulgadas",
+    "price": 1199,
+    "category": "Electrónicos",
+    "stock": 18,
+    "available": true
+  },
+  {
+    "title": "MacBook Air M3",
+    "description": "Laptop ultradelgada con chip M3, pantalla Liquid Retina de 13.6 pulgadas y hasta 18 horas de batería",
+    "price": 1299,
+    "category": "Computadoras",
+    "stock": 12,
+    "available": true
+  },
+  {
+    "title": "Dell XPS 13",
+    "description": "Laptop premium con procesador Intel Core i7, pantalla InfinityEdge de 13.4 pulgadas y diseño elegante",
+    "price": 1099,
+    "category": "Computadoras",
+    "stock": 8,
+    "available": true
+  },
+  {
+    "title": "Nike Air Max 270",
+    "description": "Zapatillas deportivas con tecnología Air Max, diseño moderno y máxima comodidad para el día a día",
+    "price": 150,
+    "category": "Ropa y Calzado",
+    "stock": 45,
+    "available": true
+  },
+  {
+    "title": "Adidas Ultraboost 22",
+    "description": "Zapatillas de running con tecnología Boost, perfectas para corredores que buscan máximo rendimiento",
+    "price": 180,
+    "category": "Ropa y Calzado",
+    "stock": 32,
+    "available": true
+  },
+  {
+    "title": "Sony WH-1000XM5",
+    "description": "Auriculares inalámbricos con cancelación de ruido líder en la industria y hasta 30 horas de batería",
+    "price": 399,
+    "category": "Electrónicos",
+    "stock": 20,
+    "available": true
+  },
+  {
+    "title": "Apple Watch Series 9",
+    "description": "Reloj inteligente con chip S9, pantalla Always-On Retina y seguimiento avanzado de salud",
+    "price": 399,
+    "category": "Electrónicos",
+    "stock": 15,
+    "available": true
+  },
+  {
+    "title": "iPad Pro 12.9",
+    "description": "Tablet profesional con chip M2, pantalla Liquid Retina XDR de 12.9 pulgadas y compatibilidad con Apple Pencil",
+    "price": 1099,
+    "category": "Electrónicos",
+    "stock": 10,
+    "available": true
+  },
+  {
+    "title": "PlayStation 5",
+    "description": "Consola de videojuegos de nueva generación con SSD ultrarrápido y gráficos 4K",
+    "price": 499,
+    "category": "Gaming",
+    "stock": 5,
+    "available": true
+  },
+  {
+    "title": "Xbox Series X",
+    "description": "Consola de videojuegos más potente con 4K nativo, 120 FPS y Quick Resume",
+    "price": 499,
+    "category": "Gaming",
+    "stock": 7,
+    "available": true
+  },
+  {
+    "title": "Nintendo Switch OLED",
+    "description": "Consola híbrida con pantalla OLED de 7 pulgadas, perfecta para jugar en casa y en movimiento",
+    "price": 349,
+    "category": "Gaming",
+    "stock": 12,
+    "available": true
+  },
+  {
+    "title": "Canon EOS R6 Mark II",
+    "description": "Cámara mirrorless profesional con sensor de 24.2MP, grabación 4K y estabilización de imagen",
+    "price": 2499,
+    "category": "Fotografía",
+    "stock": 3,
+    "available": true
+  },
+  {
+    "title": "Sony A7 IV",
+    "description": "Cámara mirrorless full-frame con sensor de 33MP, grabación 4K 60p y autofoco avanzado",
+    "price": 2498,
+    "category": "Fotografía",
+    "stock": 4,
+    "available": true
+  },
+  {
+    "title": "Dyson V15 Detect",
+    "description": "Aspiradora inalámbrica con láser para detectar polvo microscópico y hasta 60 minutos de autonomía",
+    "price": 749,
+    "category": "Hogar",
+    "stock": 8,
+    "available": true
+  },
+  {
+    "title": "Roomba i7+",
+    "description": "Robot aspirador inteligente con mapeo de habitaciones y estación de vaciado automático",
+    "price": 599,
+    "category": "Hogar",
+    "stock": 6,
+    "available": true
+  },
+  {
+    "title": "KitchenAid Artisan",
+    "description": "Batidora de pie con 5 cuartos de capacidad, 10 velocidades y múltiples accesorios",
+    "price": 379,
+    "category": "Hogar",
+    "stock": 9,
+    "available": true
+  },
+  {
+    "title": "Vitamix A3500",
+    "description": "Licuadora de alta velocidad con 5 programas preestablecidos y jarra de 64 onzas",
+    "price": 549,
+    "category": "Hogar",
+    "stock": 5,
+    "available": true
+  },
+  {
+    "title": "Patagonia Better Sweater",
+    "description": "Chaqueta de lana reciclada, cálida, cómoda y sostenible para actividades al aire libre",
+    "price": 99,
+    "category": "Ropa y Calzado",
+    "stock": 28,
+    "available": true
+  },
+  {
+    "title": "North Face Denali Jacket",
+    "description": "Chaqueta polar clásica con tecnología ThermoBall, perfecta para clima frío y actividades outdoor",
+    "price": 89,
+    "category": "Ropa y Calzado",
+    "stock": 22,
+    "available": true
+  },
+  {
+    "title": "Levi's 501 Original",
+    "description": "Jeans clásicos de corte recto, confeccionados con denim 100% algodón y lavado vintage",
+    "price": 69,
+    "category": "Ropa y Calzado",
+    "stock": 35,
+    "available": true
+  },
+  {
+    "title": "Uniqlo Heattech Crew Neck",
+    "description": "Camiseta térmica con tecnología Heattech, mantiene el calor corporal y absorbe la humedad",
+    "price": 19,
+    "category": "Ropa y Calzado",
+    "stock": 50,
+    "available": true
+  },
+  {
+    "title": "Tesla Model 3",
+    "description": "Sedán eléctrico con autonomía de 358 km, aceleración 0-100 km/h en 4.4 segundos y piloto automático",
+    "price": 39990,
+    "category": "Automóviles",
+    "stock": 2,
+    "available": true
+  },
+  {
+    "title": "BMW i4 M50",
+    "description": "Sedán eléctrico deportivo con 544 CV, autonomía de 510 km y tecnología BMW iDrive 8",
+    "price": 66900,
+    "category": "Automóviles",
+    "stock": 1,
+    "available": true
+  },
+  {
+    "title": "Audi e-tron GT",
+    "description": "Gran turismo eléctrico con 530 CV, autonomía de 488 km y diseño deportivo aerodinámico",
+    "price": 106500,
+    "category": "Automóviles",
+    "stock": 1,
+    "available": true
+  }
+]

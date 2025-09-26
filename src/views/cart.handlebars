@@ -1,0 +1,162 @@
+<div class="container">
+  <h1>Mi Carrito</h1>
+  <a href="/views/products" class="btn btn-secondary">← Volver a productos</a>
+
+  {{#if error}}
+    <div class="error">
+      <h3>Error al cargar el carrito</h3>
+      <p>{{error}}</p>
+      <a href="/views/products" class="btn btn-primary">Volver a Productos</a>
+    </div>
+  {{/if}}
+
+  {{#if cart}}
+    {{#with cart}}
+      <h2>Carrito ID: {{_id}}</h2>
+      
+      <div id="cart" data-cid="{{_id}}">
+        {{#if products}}
+          <div class="cart-items">
+            {{#each products}}
+              <div class="cart-item" style="border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 8px;">
+                <div class="item-info">
+                  <h3>{{this.product.title}}</h3>
+                  <p>Precio unitario: ${{this.product.price}}</p>
+                  <p>Cantidad: {{this.quantity}}</p>
+                  <p><strong>Subtotal: $<span class="subtotal">{{this.product.price}}</span></strong></p>
+                </div>
+
+                <div class="item-actions">
+                  <button class="btn btn-danger" onclick="removeProduct('{{this.product._id}}')">Eliminar</button>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+
+          <div class="cart-actions">
+            <button id="clearCart" class="btn btn-danger">Vaciar carrito</button>
+          </div>
+        {{else}}
+          <p>El carrito está vacío.</p>
+        {{/if}}
+      </div>
+    {{/with}}
+  {{else}}
+    {{#if payload}}
+      {{!-- si renderizas pasando payload --}}
+      {{#with payload}}
+        <h1>Carrito: {{_id}}</h1>
+        <div id="cart" data-cid="{{_id}}">
+          {{#if products}}
+            <ul class="cart-list">
+              {{#each products}}
+                <li class="cart-item" data-pid="{{#if this.product._id}}{{this.product._id}}{{else}}{{this.product}}{{/if}}">
+                  <div class="item-info">
+                    <strong class="prod-title">{{#if this.product.title}}{{this.product.title}}{{else}}Producto {{this.product}}{{/if}}</strong>
+                    <div class="prod-meta">
+                      <span>Precio unitario: ${{#if this.product.price}}{{this.product.price}}{{else}}-{{/if}}</span>
+                      <span>Subtotal: ${{#if this.product.price}}{{this.subtotal}}{{else}}-{{/if}}</span>
+                    </div>
+                  </div>
+
+                  <div class="item-actions">
+                    <input type="number" class="qty-input" value="{{this.quantity}}" min="1" />
+                    <button class="btn btn-outline update-btn">Actualizar</button>
+                    <button class="btn btn-danger remove-btn">Eliminar</button>
+                  </div>
+                </li>
+              {{/each}}
+            </ul>
+
+            <div class="cart-actions">
+              <button id="clearCart" class="btn btn-danger">Vaciar carrito</button>
+            </div>
+          {{else}}
+            <p>El carrito está vacío.</p>
+          {{/if}}
+        </div>
+      {{/with}}
+    {{else}}
+      <p>Carrito no disponible.</p>
+    {{/if}}
+  {{/if}}
+</main>
+
+<script>
+  // Helper para leer cartId del DOM
+  function getCartIdFromDom() {
+    const el = document.getElementById('cart');
+    return el ? el.dataset.cid : null;
+  }
+
+  async function updateQuantity(pid, qty) {
+    try {
+      const cid = getCartIdFromDom();
+      if (!cid) throw new Error('Cart id no encontrado');
+      const res = await fetch(`/api/carts/${cid}/products/${pid}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ quantity: Number(qty) })
+      });
+      if (!res.ok) throw new Error('Error al actualizar cantidad');
+      location.reload();
+    } catch (err) {
+      console.error(err);
+      alert('Error al actualizar cantidad');
+    }
+  }
+
+  async function removeProduct(pid) {
+    try {
+      const cid = getCartIdFromDom();
+      if (!cid) throw new Error('Cart id no encontrado');
+      const res = await fetch(`/api/carts/${cid}/products/${pid}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Error al eliminar producto');
+      location.reload();
+    } catch (err) {
+      console.error(err);
+      alert('Error al eliminar producto');
+    }
+  }
+
+  async function clearCart() {
+    try {
+      const cid = getCartIdFromDom();
+      if (!cid) throw new Error('Cart id no encontrado');
+      const res = await fetch(`/api/carts/${cid}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Error al vaciar carrito');
+      location.reload();
+    } catch (err) {
+      console.error(err);
+      alert('Error al vaciar carrito');
+    }
+  }
+
+  // Delegación de eventos
+  document.addEventListener('click', (e) => {
+    if (e.target.matches('.update-btn')) {
+      const li = e.target.closest('.cart-item');
+      const pid = li.dataset.pid;
+      const qty = li.querySelector('.qty-input').value;
+      updateQuantity(pid, qty);
+    } else if (e.target.matches('.remove-btn')) {
+      const li = e.target.closest('.cart-item');
+      const pid = li.dataset.pid;
+      if (confirm('Eliminar este producto del carrito?')) removeProduct(pid);
+    } else if (e.target.matches('#clearCart')) {
+      if (confirm('Vaciar todo el carrito?')) clearCart();
+    }
+  });
+
+  // Calcular subtotales cuando se carga la página
+  document.addEventListener('DOMContentLoaded', function() {
+    const cartItems = document.querySelectorAll('.cart-item');
+    cartItems.forEach(item => {
+      const priceElement = item.querySelector('.subtotal');
+      const price = parseFloat(priceElement.textContent);
+      const quantity = parseInt(item.querySelector('p:nth-child(3)').textContent.replace('Cantidad: ', ''));
+      const subtotal = price * quantity;
+      priceElement.textContent = subtotal;
+    });
+  });
+</script>

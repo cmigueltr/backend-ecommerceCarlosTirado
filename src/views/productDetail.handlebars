@@ -1,0 +1,56 @@
+<div class="container">
+  {{#if product}}
+    <div class="product-detail">
+      <h1>{{product.title}}</h1>
+      <p class="description">{{product.description}}</p>
+      <div class="product-info">
+        <p class="price">${{product.price}}</p>
+        <p class="stock">Stock disponible: {{product.stock}}</p>
+        <p class="category">Categoría: {{product.category}}</p>
+        <p class="available">{{#if product.available}}✅ Disponible{{else}}❌ No disponible{{/if}}</p>
+      </div>
+      
+      <div class="actions">
+        <button class="btn btn-primary" onclick="addToCart('{{product._id}}')">
+          Agregar al Carrito
+        </button>
+        <a href="/views/products" class="btn btn-secondary">Volver a Productos</a>
+      </div>
+    </div>
+  {{else}}
+    <div class="error">
+      <h2>Producto no encontrado</h2>
+      <p>El producto que buscas no existe o ha sido eliminado.</p>
+      <a href="/views/products" class="btn btn-primary">Ver todos los productos</a>
+    </div>
+  {{/if}}
+</div>
+
+<script>
+async function addToCart(productId) {
+  try {
+    const cartId = 'user-cart-1'; // ID personalizado
+    
+    const response = await fetch(`/api/carts/${cartId}/products/${productId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ quantity: 1 })
+    });
+    
+    if (response.ok) {
+      const result = await response.json();
+      console.log('Carrito actualizado:', result);
+      alert('✅ Producto agregado al carrito exitosamente!');
+    } else {
+      const error = await response.json();
+      console.error('Error del servidor:', error);
+      alert(`❌ Error al agregar el producto: ${error.error || 'Error desconocido'}`);
+    }
+  } catch (error) {
+    console.error('Error de red:', error);
+    alert('❌ Error de conexión al agregar el producto al carrito');
+  }
+}
+</script>
